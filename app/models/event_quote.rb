@@ -1,0 +1,2 @@
+class EventQuote < ApplicationRecord
+end

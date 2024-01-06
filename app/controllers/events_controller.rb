@@ -19,14 +19,34 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+    redirect_to root_path unless @event.user_id == current_user.id
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    return unless @event.user_id == current_user.id
+    @event.destroy
+    redirect_to root_path
+  end
+
   private
 
   def set_event
     @event = Event.find(params[:id])
   end
-  
+
   def event_params
     params.require(:event).permit(:name, :event_date)
   end
 end
-
