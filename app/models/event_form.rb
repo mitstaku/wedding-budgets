@@ -1,7 +1,6 @@
 class EventForm
   include ActiveModel::Model
 
-
   attr_accessor :event_id, :version_number, :detail, :cost, :input_date,
                 :ceremony_type, :ceremony_cost,
                 :adult_count, :child_count,
@@ -19,8 +18,11 @@ class EventForm
                 :foods, :ceremonies, :venues, :costumes, :beauties, :flowers, :prints, :stagings, :photos, :videos, :gifts, :pre_ceremonies
 
 
-  validates :event_id, :version_number, :cost, :input_date,
+  validates :event_id, :version_number, :input_date,
             :adult_count, :child_count, presence: true
+  validates :cost, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :adult_count, :child_count, numericality: { only_integer: true }
+  validates :ceremony_cost, :food_cost, :venue_cost, :costume_cost, :beauty_cost, :flower_cost, :print_cost, :staging_cost, :photo_cost, :video_cost, :gift_cost, :pre_ceremony_cost, numericality: { only_integer: true, allow_blank: true }
 
   def initialize(attributes = {})
     super
