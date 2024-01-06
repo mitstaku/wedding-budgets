@@ -1,0 +1,36 @@
+<div id="event-form-container">
+  <header id="event-form-header">
+
+  </header>
+  <div id="event-form-main">
+    <h2 id="event-form-title">イベントの概要を入力</h2>
+    
+    <%= form_with model: @event, local: true, html: { data: { turbo: "false" } } do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div id="new-event">
+      <div class="event-name-label">
+        イベント名
+        <span class="required">必須</span>
+      </div>
+      <%= f.text_area :name, class:"event-name-input", id:"event-name", placeholder:"結婚式など", maxlength:"40" %>
+      <div id="event-date-section">
+        <div class="event-date-label">
+          イベントの日
+          <span class="required">必須</span>
+        </div>
+        <%= f.date_field :event_date, class:"event-date-input", id:"event-date" %>
+      </div>
+    </div>
+    <%# 下部ボタン %>
+    <div id="event-form-buttons">
+      <%= f.submit "詳細入力へ" ,class:"submit-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+    <%# /下部ボタン %>
+  </div>
+  <% end %>
+
+  <footer id="event-form-footer">
+  </footer>
+</div>

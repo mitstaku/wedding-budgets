@@ -1,0 +1,36 @@
+
+.event-info {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-name {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.event-date {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.event-red-btn {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  background-color: #FF0000;
+  border-radius: 5px;
+}
+
+.event-destroy {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  background-color: #000000;
+  border-radius: 5px;
+}
