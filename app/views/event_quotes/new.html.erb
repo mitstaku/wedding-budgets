@@ -1,0 +1,171 @@
+<div id="event-form-container">
+  <header id="event-form-header">
+  </header>
+  <div id="event-form-main">
+    <h2 id="event-form-title">イベントの概要を入力</h2>
+  </div>
+    <%= form_with model: @event_form, url: event_event_quotes_path(@event), local: true, html: { data: { turbo: "false" } } do |f| %>
+      <%= render 'shared/error_messages', model: @event_form %>
+        
+      <div id="new-event">
+
+        <%# ゲスト %>
+        <div class="event-name-label">
+          ゲスト人数（大人）
+        </div>
+        <%= f.text_field :adult_count, class:"event-name-input", id:"adult_count-input", placeholder:"大人の参加人数を入力", maxlength:"40" %>
+        <div class="event-name-label">
+          ゲスト人数（子供）
+        </div>
+        <%= f.text_field :child_count, class:"event-name-input", id:"child_count-input", placeholder:"子供の参加人数を入力", maxlength:"40" %>
+
+        <%# 挙式 %>
+        <div class="event-name-label">
+          挙式
+        </div>
+        <%= f.text_field :ceremony_type, class: "event-type-input", id: "ceremony-type-input", placeholder: "挙式の種類を入力" %>
+        <div class="event-cost-label">
+          挙式の費用
+        </div>
+        <%= f.number_field :ceremony_cost, class: "event-cost-input", id: "ceremony-cost-input", placeholder: "挙式の費用を入力" %>
+        <div class="event-detail-label">
+        
+        <%# 料理 %>
+        <div class="event-name-label">
+          料理
+        </div>
+        <%= f.text_field :food_type, class: "event-type-input", id: "food-type-input", placeholder: "料理の種類を入力" %>
+        <div class="event-cost-label">
+          料理の費用
+        </div>
+        <%= f.number_field :food_cost, class: "event-cost-input", id: "food-cost-input", placeholder: "料理の費用を入力" %>
+        
+        <%# 会場 %>
+        <div class="event-name-label">
+          会場
+        </div>
+        <%= f.text_field :venue_type, class: "event-type-input", id: "venue-type-input", placeholder: "会場の種類を入力" %>
+        <div class="event-cost-label">
+          会場の費用
+        </div>
+        <%= f.number_field :venue_cost, class: "event-cost-input", id: "venue-cost-input", placeholder: "会場の費用を入力" %>
+        
+        <%# 衣装 %>
+        <div class="event-name-label">
+          衣装
+        </div>
+        <%= f.text_field :costume_type, class: "event-type-input", id: "costume-type-input", placeholder: "衣装の種類を入力" %>
+        <div class="event-cost-label">
+          衣装の費用
+        </div>
+        <%= f.number_field :costume_cost, class: "event-cost-input", id: "costume-cost-input", placeholder: "衣装の費用を入力" %>
+        
+        <%# 美容 %>
+        <div class="event-name-label">
+          美容
+        </div>
+        <%= f.text_field :beauty_type, class: "event-type-input", id: "beauty-type-input", placeholder: "美容の種類を入力" %>
+        <div class="event-cost-label">
+          美容の費用
+        </div>
+        <%= f.number_field :beauty_cost, class: "event-cost-input", id: "beauty-cost-input", placeholder: "美容の費用を入力" %>
+        
+        <%# 装花 %>
+        <div class="event-name-label">
+          装花
+        </div>
+        <%= f.text_field :flower_type, class: "event-type-input", id: "flower-type-input", placeholder: "装花の種類を入力" %>
+        <div class="event-cost-label">
+          装花の費用
+        </div>
+        <%= f.number_field :flower_cost, class: "event-cost-input", id: "flower-cost-input", placeholder: "装花の費用を入力" %>
+        
+        <%# 印刷物 %>
+        <div class="event-name-label">
+          印刷物
+        </div>
+        <%= f.text_field :print_type, class: "event-type-input", id: "print-type-input", placeholder: "印刷物の種類を入力" %>
+        <div class="event-cost-label">
+          印刷物の費用
+        </div>
+        <%= f.number_field :print_cost, class: "event-cost-input", id: "print-cost-input", placeholder: "印刷物の費用を入力" %>
+        
+        <%# 演出 %>
+        <div class="event-name-label">
+          演出
+        </div>
+        <%= f.text_field :staging_type, class: "event-type-input", id: "staging-type-input", placeholder: "演出の種類を入力" %>
+        <div class="event-cost-label">
+          演出の費用
+        </div>
+        <%= f.number_field :staging_cost, class: "event-cost-input", id: "staging-cost-input", placeholder: "演出の費用を入力" %>
+        
+        <%# 写真 %>
+        <div class="event-name-label">
+          写真
+        </div>
+        <%= f.text_field :photo_type, class: "event-type-input", id: "photo-type-input", placeholder: "写真の種類を入力" %>
+        <div class="event-cost-label">
+          写真の費用
+        </div>
+        <%= f.number_field :photo_cost, class: "event-cost-input", id: "photo-cost-input", placeholder: "写真の費用を入力" %>
+        
+        <%# ビデオ %>
+        <div class="event-name-label">
+          ビデオ
+        </div>
+        <%= f.text_field :video_type, class: "event-type-input", id: "video-type-input", placeholder: "ビデオの種類を入力" %>
+        <div class="event-cost-label">
+          ビデオの費用
+        </div>
+        <%= f.number_field :video_cost, class: "event-cost-input", id: "video-cost-input", placeholder: "ビデオの費用を入力" %>
+        
+        <%# 引出物 %>
+        <div class="event-name-label">
+          引出物
+        </div>
+        <%= f.text_field :gift_type, class: "event-type-input", id: "gift-type-input", placeholder: "引出物の種類を入力" %>
+        <div class="event-cost-label">
+          引出物の費用
+        </div>
+        <%= f.number_field :gift_cost, class: "event-cost-input", id: "gift-cost-input", placeholder: "引出物の費用を入力" %>
+        
+        <%# 前撮り %>
+        <div class="event-name-label">
+          前撮り
+        </div>
+        <%= f.text_field :pre_type, class: "event-type-input", id: "pre-type-input", placeholder: "前撮りの種類を入力" %>
+        <div class="event-cost-label">
+          前撮りの費用
+        </div>
+        <%= f.number_field :pre_ceremony_cost, class: "event-cost-input", id: "pre_ceremony-cost-input", placeholder: "前撮りの費用を入力" %>
+      </div>
+      
+      <div class="subtotal-display">
+        小計: <span id="subtotal-display">0</span> 円
+      </div>
+      <div class="tax-amount-display">
+        税額: <span id="tax-amount-display">0</span> 円
+      </div>
+      <div class="total-cost-display">
+        税込価格: <span id="total-cost-display">0</span> 円
+        <%= f.hidden_field :cost, id: "total-cost-hidden", value: 0 %>
+      </div>
+      
+      <div class="event-detail-label">
+        詳細
+      </div>
+      <%= f.text_area :detail, class: "event-detail-input", placeholder: "詳細を入力" %>
+
+      <%# 下部ボタン %>
+      <div id="event-form-buttons">
+        <%= f.submit "登録" ,class:"submit-btn" %>
+        <%=link_to 'もどる', root_path, class:"back-btn" %>
+      </div>
+      <%# /下部ボタン %>
+    <% end %>
+  </div>
+  <footer id="event-form-footer">
+  </footer>
+</div>
+

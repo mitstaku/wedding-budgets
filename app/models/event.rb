@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
+  belongs_to :event_quote
 
   with_options presence: true do
     validates :name

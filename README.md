@@ -41,7 +41,7 @@
 
 - belongs_to :event
 - has_many :guests
-- has_many :weddings
+- has_many :ceremonies
 - has_many :foods
 - has_many :venues
 - has_many :costumes
