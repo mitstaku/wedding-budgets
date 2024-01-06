@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :user
+  has_many :event_quote, dependent: :destroy
 
   with_options presence: true do
     validates :name
