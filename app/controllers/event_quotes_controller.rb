@@ -30,6 +30,20 @@ class EventQuotesController < ApplicationController
   private
 
   def event_quote_params
-    params.require(:event_form).permit(:detail, :cost, :adult_count, :input_date, :child_count, :ceremony_type, :ceremony_cost, :food_type, :food_cost, :venue_type, :venue_cost, :costume_type, :costume_cost, :beauty_type, :beauty_cost, :flower_type, :flower_cost, :print_type, :print_cost, :staging_type, :staging_cost, :photo_type, :photo_cost, :video_type, :video_cost, :gift_type, :gift_cost, :pre_ceremony_type, :pre_ceremony_cost).merge(event_id: params[:event_id])
+    params.require(:event_form).permit(
+      :detail, :cost, :adult_count, :input_date, :child_count, 
+      ceremonies_attributes: [:ceremony_type, :ceremony_cost],
+      foods_attributes: [:food_type, :food_cost],
+      venues_attributes: [:venue_type, :venue_cost],
+      costumes_attributes: [:costume_type, :costume_cost],
+      beauties_attributes: [:beauty_type, :beauty_cost],
+      flowers_attributes: [:flower_type, :flower_cost],
+      prints_attributes: [:print_type, :print_cost],
+      stagings_attributes: [:staging_type, :staging_cost],
+      photos_attributes: [:photo_type, :photo_cost],
+      videos_attributes: [:video_type, :video_cost],
+      gifts_attributes: [:gift_type, :gift_cost],
+      pre_ceremonies_attributes: [:pre_ceremony_type, :pre_ceremony_cost]
+    ).merge(event_id: params[:event_id])
   end
 end
