@@ -5,8 +5,9 @@
 <div class="event-list">
   <% @events.each do |event| %>
     <div class="event-item">
-      <%= event.name %>
-      <%= link_to 'イベント詳細', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn" %>
+      <% remaining_days = (event.event_date - Date.today).to_i %>
+      <p><%= event.name %>まであと<%= remaining_days %>日</p>
+      <%= link_to '見積登録', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn" %>
     </div>
 
     <% event_quotes = @event_quotes[event.id] || [] %>

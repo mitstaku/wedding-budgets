@@ -45,7 +45,20 @@ class EventQuotesController < ApplicationController
       @event_form.save
       redirect_to root_path
     else
-      puts @event_form.errors.full_messages
+      @fieldIndices = {
+        foods: 1,
+        venues: 1,
+        ceremonies: 1,
+        costumes: 1,
+        beauties: 1,
+        flowers: 1,
+        prints: 1,
+        stagings: 1,
+        photos: 1,
+        videos: 1,
+        gifts: 1,
+        pre_ceremonies: 1
+      }
       render :new
     end
   end
@@ -122,25 +135,22 @@ class EventQuotesController < ApplicationController
     render partial: 'pre_ceremony', locals: { index: Time.now.to_i, f: @event_form }
   end
 
-
-  
   private
 
   def event_quote_params
     params.require(:event_form).permit(
       :detail, :cost, :adult_count, :input_date, :child_count, 
-      ceremonies_attributes: [:ceremony_type, :ceremony_cost],
-      foods_attributes: [:food_type, :food_cost],
-      venues_attributes: [:venue_type, :venue_cost],
-      costumes_attributes: [:costume_type, :costume_cost],
-      beauties_attributes: [:beauty_type, :beauty_cost],
-      flowers_attributes: [:flower_type, :flower_cost],
-      prints_attributes: [:print_type, :print_cost],
-      stagings_attributes: [:staging_type, :staging_cost],
-      photos_attributes: [:photo_type, :photo_cost],
-      videos_attributes: [:video_type, :video_cost],
-      gifts_attributes: [:gift_type, :gift_cost],
-      pre_ceremonies_attributes: [:pre_ceremony_type, :pre_ceremony_cost]
+      ceremonies_attributes: [:id, :ceremony_type, :ceremony_cost],
+      foods_attributes: [:id, :food_type, :food_cost],
+      costumes_attributes: [:id, :costume_type, :costume_cost],
+      beauties_attributes: [:id, :beauty_type, :beauty_cost],
+      flowers_attributes: [:id, :flower_type, :flower_cost],
+      prints_attributes: [:id, :print_type, :print_cost],
+      stagings_attributes: [:id, :staging_type, :staging_cost],
+      photos_attributes: [:id, :photo_type, :photo_cost],
+      videos_attributes: [:id, :video_type, :video_cost],
+      gifts_attributes: [:id, :gift_type, :gift_cost],
+      pre_ceremonies_attributes: [:id, :pre_ceremony_type, :pre_ceremony_cost]
     ).merge(event_id: params[:event_id])
   end
 
