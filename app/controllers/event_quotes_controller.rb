@@ -1,8 +1,11 @@
 class EventQuotesController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :new, :create]
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def index
-    @events = Event.all
-    @event_quote = EventQuote.all
+    @events = user_signed_in? ? current_user.events : []
+    @event_quote = user_signed_in? ? EventQuote.where(event_id: current_user.events.pluck(:id)) : []
   end
 
   def new
@@ -51,5 +54,15 @@ class EventQuotesController < ApplicationController
       gifts_attributes: [:gift_type, :gift_cost],
       pre_ceremonies_attributes: [:pre_ceremony_type, :pre_ceremony_cost]
     ).merge(event_id: params[:event_id])
+  end
+
+  def set_event
+    @event = current_user.events.find(params[:id])
+    redirect_to root_path unless @event
+  end
+
+  def handle_record_not_found
+    flash[:alert] = "The event you were looking for could not be found."
+    redirect_to root_path
   end
 end
