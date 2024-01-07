@@ -1,0 +1,44 @@
+.top-page-header {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.search-bar-contents {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+}
+
+.lists-right {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.lists-right li {
+  display: inline-block;
+}
+
+.lists-right a {
+  color: #333;
+  text-decoration: none;
+}
+
+.lists-right a:hover {
+  color: #007bff;
+}
+
+.logout {
+  color: #dc3545;
+}
+
+.login, .sign-up {
+  color: #28a745;
+}

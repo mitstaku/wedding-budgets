@@ -1,17 +1,84 @@
 <%= render "shared/header" %>
 
-<h1>aaa</h1>
+<h1>イベント見積グラフ</h1>
 
+<div class="event-list">
   <% @events.each do |event| %>
-    <%= event.name %>
-  <% end %>
+    <div class="event-item">
+      <% remaining_days = (event.event_date - Date.today).to_i %>
+      <p><%= event.name %>まであと<%= remaining_days %>日</p>
+      <%= link_to '見積登録', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn" %>
+    </div>
+    <% event_quotes = @event_quotes[event.id] %>
+    <% if event_quotes.any? %>
+      <% event_quote = event_quotes.first %>
+      <% first_quote = event_quotes.first.cost %>
+      <% last_quote = event_quotes.last.cost %>
+      <% difference = last_quote - first_quote %>
+      <div class='event-info'>
+        <h3 class='event-name'>
+          初回見積: <%= number_with_delimiter(first_quote) %>円
+          最新見積: <%= number_with_delimiter(last_quote) %>円
+          差分: <%= number_with_delimiter(difference) %>円
+        </h3>
+        <div class='event-date'>
+          <%= event_quote.input_date.strftime("%Y年%m月%d日") %>
+        </div>
+      </div>
+    <% end %>
 
-  <% @event_quote.each do |event_quote| %>
-    <div class='event-info'>
-      <h3 class='event-name'>
-        <%= event_quote.cost %>
-      </h3>
-    <div class='event-date'>
-      <%= event_quote.input_date %>
+    <canvas id="myChart_<%= event.id %>"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+    const data = <%= event_quotes.map(&:cost).to_json.html_safe %>;
+    const labels = <%= (1..event_quotes.size).map { |i| "登録：#{i}回目" }.to_json.html_safe %>;
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const ctx = document.getElementById('myChart_<%= event.id %>').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: labels,
+          data: data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    });
+    </script>
+    <div class="event-quotes-list">
+      <% event_quotes.each_with_index do |quote, index| %>
+        <div class="event-quote-item">
+          <p>登録回数: <%= index + 1 %></p>
+          <p>登録日: <%= quote.input_date.strftime("%Y年%m月%d日") %></p>
+          <p>金額: <%= number_with_delimiter(quote.cost) %>円</p>
+        </div>
+      <% end %>
     </div>
   <% end %>
+</div>

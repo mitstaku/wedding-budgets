@@ -37,3 +37,8 @@
   font-size: 18px;
   margin-top: 20px;
 }
+
+.event-list {
+  width: 90%; /* 画面の90%の幅を使用 */
+  margin: 0 auto; /* 左右のマージンを自動的に設定して中央に配置 */
+}

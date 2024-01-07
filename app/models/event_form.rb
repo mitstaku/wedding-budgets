@@ -26,18 +26,19 @@ class EventForm
 
   def initialize(attributes = {})
     super
-      self.foods = 2.times.map { Food.new() } unless self.foods.present?
-      self.ceremonies = 2.times.map { Ceremony.new() } unless self.ceremonies.present?
-      self.venues = 2.times.map { Venue.new() } unless self.venues.present?
-      self.costumes = 2.times.map { Costume.new() } unless self.costumes.present?
-      self.beauties = 2.times.map { Beauty.new() } unless self.beauties.present?
-      self.flowers = 2.times.map { Flower.new() } unless self.flowers.present?
-      self.prints = 2.times.map { Print.new() } unless self.prints.present?
-      self.stagings = 2.times.map { Staging.new() } unless self.stagings.present?
-      self.photos = 2.times.map { Photo.new() } unless self.photos.present?
-      self.videos = 2.times.map { Video.new() } unless self.videos.present?
-      self.gifts = 2.times.map { Gift.new() } unless self.gifts.present?
-      self.pre_ceremonies = 2.times.map { PreCeremony.new() } unless self.pre_ceremonies.present?
+    
+      self.foods = 10.times.map { Food.new() } unless self.foods.present?
+      self.ceremonies = 10.times.map { Ceremony.new() } unless self.ceremonies.present?
+      self.venues = 10.times.map { Venue.new() } unless self.venues.present?
+      self.costumes = 10.times.map { Costume.new() } unless self.costumes.present?
+      self.beauties = 10.times.map { Beauty.new() } unless self.beauties.present?
+      self.flowers = 10.times.map { Flower.new() } unless self.flowers.present?
+      self.prints = 10.times.map { Print.new() } unless self.prints.present?
+      self.stagings = 10.times.map { Staging.new() } unless self.stagings.present?
+      self.photos = 10.times.map { Photo.new() } unless self.photos.present?
+      self.videos = 10.times.map { Video.new() } unless self.videos.present?
+      self.gifts = 10.times.map { Gift.new() } unless self.gifts.present?
+      self.pre_ceremonies = 10.times.map { PreCeremony.new() } unless self.pre_ceremonies.present?
   end
 
   def foods_attributes=(attributes)

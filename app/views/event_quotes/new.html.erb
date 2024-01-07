@@ -23,109 +23,169 @@
         <div class="event-name-label">
           挙式
         </div>
-        <%= f.fields_for :ceremonies do |i| %>
-            <%= i.text_field :ceremony_type, class: "event-type-input", id: "ceremony-type-input", placeholder: "挙式の種類を入力" %>
-            <%= i.text_field :ceremony_cost, class: "event-cost-input", id: "ceremony-cost-input", placeholder: "挙式のコストを入力" %>
-        <% end %>
+        <div id="ceremony-container">
+          <% @event_form.ceremonies.each_with_index do |ceremony, index| %>
+            <%= f.fields_for :ceremonies, ceremony do |i| %>
+              <%= i.text_field "ceremony_type", class: "event-type-input", id: "ceremony_type_#{index + 1}", placeholder: "挙式の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "ceremony_cost", class: "event-cost-input", id: "ceremony_cost_#{index + 1}", placeholder: "挙式のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-ceremony-fields-button">+</button>
 
         <%# 料理 %>
         <div class="event-name-label">
           料理/料理の費用
         </div>
-        <%= f.fields_for :foods do |i| %>
-            <%= i.text_field :food_type, class: "event-type-input", id: "food-type-input", placeholder: "食品の種類を入力" %>
-            <%= i.text_field :food_cost, class: "event-cost-input", id: "food-cost-input", placeholder: "食品のコストを入力" %>
-        <% end %>
+        <div id="food-container">
+          <% @event_form.foods.each_with_index do |food, index| %>
+            <%= f.fields_for :foods, food do |i| %>
+              <%= i.text_field "food_type", class: "event-type-input", id: "food_type_#{index + 1}", placeholder: "料理の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "food_cost", class: "event-cost-input", id: "food_cost_#{index + 1}", placeholder: "料理のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-food-fields-button">+</button>
         
         <%# 会場 %>
         <div class="event-name-label">
           会場
         </div>
-        <%= f.fields_for :venues do |i| %>
-            <%= i.text_field :venue_type, class: "event-type-input", id: "venue-type-input", placeholder: "会場の種類を入力" %>
-            <%= i.text_field :venue_cost, class: "event-cost-input", id: "venue-cost-input", placeholder: "会場のコストを入力" %>
-        <% end %>
+        <div id="venue-container">
+          <% @event_form.venues.each_with_index do |venue, index| %>
+            <%= f.fields_for :venues, venue do |i| %>
+              <%= i.text_field "venue_type", class: "event-type-input", id: "venue_type_#{index + 1}", placeholder: "会場の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "venue_cost", class: "event-cost-input", id: "venue_cost_#{index + 1}", placeholder: "会場のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-venue-fields-button">+</button>
         
         <%# 衣装 %>
         <div class="event-name-label">
           衣装
         </div>
-        <%= f.fields_for :costumes do |i| %>
-            <%= i.text_field :costume_type, class: "event-type-input", id: "costume-type-input", placeholder: "衣装の種類を入力" %>
-            <%= i.text_field :costume_cost, class: "event-cost-input", id: "costume-cost-input", placeholder: "衣装のコストを入力" %>
-        <% end %>
+        <div id="costume-container">
+          <% @event_form.costumes.each_with_index do |costume, index| %>
+            <%= f.fields_for :costumes, costume do |i| %>
+              <%= i.text_field "costume_type", class: "event-type-input", id: "costume_type_#{index + 1}", placeholder: "衣装の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "costume_cost", class: "event-cost-input", id: "costume_cost_#{index + 1}", placeholder: "衣装のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-costume-fields-button">+</button>
         
         <%# 美容 %>
         <div class="event-name-label">
           美容
         </div>
-        <%= f.fields_for :beauties do |i| %>
-            <%= i.text_field :beauty_type, class: "event-cost-input", id: "beauty-type-input", placeholder: "美容の種類を入力" %>
-            <%= i.text_field :beauty_cost, class: "event-cost-input", id: "beauty-cost-input", placeholder: "美容のコストを入力" %>
-        <% end %>
+        <div id="beauty-container">
+          <% @event_form.beauties.each_with_index do |beauty, index| %>
+            <%= f.fields_for :beauties, beauty do |i| %>
+              <%= i.text_field "beauty_type", class: "event-type-input", id: "beauty_type_#{index + 1}", placeholder: "美容の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "beauty_cost", class: "event-cost-input", id: "beauty_cost_#{index + 1}", placeholder: "美容のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-beauty-fields-button">+</button>
         
         <%# 装花 %>
         <div class="event-name-label">
           装花
         </div>
-        <%= f.fields_for :flowers do |i| %>
-            <%= i.text_field :flower_type, class: "event-type-input", id: "flower-type-input", placeholder: "装花の種類を入力" %>
-            <%= i.text_field :flower_cost, class: "event-cost-input", id: "flower-cost-input", placeholder: "装花のコストを入力" %>
-        <% end %>
+        <div id="flower-container">
+          <% @event_form.flowers.each_with_index do |flower, index| %>
+            <%= f.fields_for :flowers, flower do |i| %>
+              <%= i.text_field "flower_type", class: "event-type-input", id: "flower_type_#{index + 1}", placeholder: "装花の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "flower_cost", class: "event-cost-input", id: "flower_cost_#{index + 1}", placeholder: "装花のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-flower-fields-button">+</button>
         
         <%# 印刷物 %>
         <div class="event-name-label">
           印刷物
         </div>
-        <%= f.fields_for :prints do |i| %>
-            <%= i.text_field :print_type, class: "event-cost-input", id: "print-type-input", placeholder: "印刷物の種類を入力" %>
-            <%= i.text_field :print_cost, class: "event-cost-input", id: "print-cost-input", placeholder: "印刷物のコストを入力" %>
-        <% end %>
+        <div id="print-container">
+          <% @event_form.prints.each_with_index do |print, index| %>
+            <%= f.fields_for :prints, print do |i| %>
+              <%= i.text_field "print_type", class: "event-type-input", id: "print_type_#{index + 1}", placeholder: "印刷物の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "print_cost", class: "event-cost-input", id: "print_cost_#{index + 1}", placeholder: "印刷物のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-print-fields-button">+</button>
         
         <%# 演出 %>
         <div class="event-name-label">
           演出
         </div>
-        <%= f.fields_for :stagings do |i| %>
-            <%= i.text_field :staging_type, class: "event-type-input", id: "staging-type-input", placeholder: "演出の種類を入力" %>
-            <%= i.text_field :staging_cost, class: "event-cost-input", id: "staging-cost-input", placeholder: "演出のコストを入力" %>
-        <% end %>
+        <div id="staging-container">
+          <% @event_form.stagings.each_with_index do |staging, index| %>
+            <%= f.fields_for :stagings, staging do |i| %>
+              <%= i.text_field "staging_type", class: "event-type-input", id: "staging_type_#{index + 1}", placeholder: "演出の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "staging_cost", class: "event-cost-input", id: "staging_cost_#{index + 1}", placeholder: "演出のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-staging-fields-button">+</button>
         
         <%# 写真 %>
         <div class="event-name-label">
           写真
         </div>
-        <%= f.fields_for :photos do |i| %>
-            <%= i.text_field :photo_type, class: "event-type-input", id: "photo-type-input", placeholder: "写真の種類を入力" %>
-            <%= i.text_field :photo_cost, class: "event-cost-input", id: "photo-cost-input", placeholder: "写真のコストを入力" %>
-        <% end %>
+        <div id="photo-container">
+          <% @event_form.photos.each_with_index do |photo, index| %>
+            <%= f.fields_for :photos, photo do |i| %>
+              <%= i.text_field "photo_type", class: "event-type-input", id: "photo_type_#{index + 1}", placeholder: "写真の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "photo_cost", class: "event-cost-input", id: "photo_cost_#{index + 1}", placeholder: "写真のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-photo-fields-button">+</button>
         
         <%# ビデオ %>
         <div class="event-name-label">
           ビデオ
         </div>
-        <%= f.fields_for :videos do |i| %>
-            <%= i.text_field :video_type, class: "event-type-input", id: "video-type-input", placeholder: "ビデオの種類を入力" %>
-            <%= i.text_field :video_cost, class: "event-cost-input", id: "video-cost-input", placeholder: "ビデオのコストを入力" %>
-        <% end %>
+        <div id="video-container">
+          <% @event_form.videos.each_with_index do |video, index| %>
+            <%= f.fields_for :videos, video do |i| %>
+              <%= i.text_field "video_type", class: "event-type-input", id: "video_type_#{index + 1}", placeholder: "ビデオの種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "video_cost", class: "event-cost-input", id: "video_cost_#{index + 1}", placeholder: "ビデオのコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-video-fields-button">+</button>
         
         <%# 引出物 %>
         <div class="event-name-label">
           引出物
         </div>
-        <%= f.fields_for :gifts do |i| %>
-            <%= i.text_field :gift_type, class: "event-type-input", id: "gift-type-input", placeholder: "引出物の種類を入力" %>
-            <%= i.text_field :gift_cost, class: "event-cost-input", id: "gift-cost-input", placeholder: "引出物のコストを入力" %>
-        <% end %>
+        <div id="gift-container">
+          <% @event_form.gifts.each_with_index do |gift, index| %>
+            <%= f.fields_for :gifts, gift do |i| %>
+              <%= i.text_field "gift_type", class: "event-type-input", id: "gift_type_#{index + 1}", placeholder: "引出物の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "gift_cost", class: "event-cost-input", id: "gift_cost_#{index + 1}", placeholder: "引出物のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-gift-fields-button">+</button>
         
         <%# 前撮り %>
         <div class="event-name-label">
           前撮り
         </div>
-        <%= f.fields_for :pre_ceremonies do |i| %>
-            <%= i.text_field :pre_ceremony_type, class: "event-type-input", id: "pre-type-input", placeholder: "前撮りの種類を入力" %>
-            <%= i.text_field :pre_ceremony_cost, class: "event-cost-input", id: "pre_ceremony-cost-input", placeholder: "前撮りのコストを入力" %>
-        <% end %>
+        <div id="pre_ceremony-container">
+          <% @event_form.pre_ceremonies.each_with_index do |pre_ceremony, index| %>
+            <%= f.fields_for :pre_ceremonies, pre_ceremony do |i| %>
+              <%= i.text_field "pre_ceremony_type", class: "event-type-input", id: "pre_ceremony_type_#{index + 1}", placeholder: "前撮りの種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+              <%= i.text_field "pre_ceremony_cost", class: "event-cost-input", id: "pre_ceremony_cost_#{index + 1}", placeholder: "前撮りのコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+            <% end %>
+          <% end %>
+        </div>
+        <button type="button" id="show-pre_ceremony-fields-button">+</button>
       </div>
       
       <div class="subtotal-display">
@@ -156,3 +216,84 @@
   </footer>
 </div>
 
+
+<script>
+  window.onload = function() {
+    var fieldIndices = {
+      food: 1,
+      venue: 1,
+      ceremony: 1,
+      gift: 1,
+      pre_ceremony: 1,
+      costume: 1,
+      beauty: 1,
+      flower: 1,
+      print: 1,
+      staging: 1,
+      photo: 1,
+      video: 1,
+    };
+
+    function showNextField(fieldType) {
+      var index = fieldIndices[fieldType];
+      var typeField = document.getElementById(fieldType + '_type_' + index);
+      var costField = document.getElementById(fieldType + '_cost_' + index);
+      if (typeField && costField) {
+        typeField.style.display = 'block';
+        costField.style.display = 'block';
+        fieldIndices[fieldType]++;
+      }
+    }
+    document.getElementById('show-ceremony-fields-button').addEventListener('click', function() {
+      showNextField('ceremony');
+    });
+
+    document.getElementById('show-food-fields-button').addEventListener('click', function() {
+      showNextField('food');
+    });
+
+    document.getElementById('show-venue-fields-button').addEventListener('click', function() {
+      showNextField('venue');
+    });
+
+    document.getElementById('show-ceremony-fields-button').addEventListener('click', function() {
+      showNextField('ceremony');
+    });
+
+    document.getElementById('show-gift-fields-button').addEventListener('click', function() {
+      showNextField('gift');
+    });
+
+    document.getElementById('show-pre_ceremony-fields-button').addEventListener('click', function() {
+      showNextField('pre_ceremony');
+    });
+
+    document.getElementById('show-costume-fields-button').addEventListener('click', function() {
+      showNextField('costume');
+    });
+
+    document.getElementById('show-beauty-fields-button').addEventListener('click', function() {
+      showNextField('beauty');
+    });
+
+    document.getElementById('show-flower-fields-button').addEventListener('click', function() {
+      showNextField('flower');
+    });
+
+    document.getElementById('show-print-fields-button').addEventListener('click', function() {
+      showNextField('print');
+    });
+
+    document.getElementById('show-staging-fields-button').addEventListener('click', function() {
+      showNextField('staging');
+    });
+
+    document.getElementById('show-photo-fields-button').addEventListener('click', function() {
+      showNextField('photo');
+    });
+
+    document.getElementById('show-video-fields-button').addEventListener('click', function() {
+      showNextField('video');
+    });
+  } 
+</script>
