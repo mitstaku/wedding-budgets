@@ -8,62 +8,62 @@
       <%= event.name %>
       <%= link_to 'イベント詳細', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn" %>
     </div>
-  <% end %>
-</div>
 
-<div class="event-quote-graph">
-  <% @event_quote.each do |event_quote| %>
-    <div class='event-info'>
-      <h3 class='event-name'>
-        <%= event_quote.cost %>
-      </h3>
-      <div class='event-date'>
-        <%= event_quote.input_date %>
+    <% event_quotes = @event_quotes[event.id] || [] %>
+    <% event_quotes.each do |event_quote| %>
+      <div class='event-info'>
+        <h3 class='event-name'>
+          <%= event_quote.cost %>
+        </h3>
+        <div class='event-date'>
+          <%= event_quote.input_date %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
 
-  <canvas id="myChart"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script>
-  const data = <%= @event_quote.map(&:cost).to_json.html_safe %>;
-  const labels = <%= @event_quote.map(&:input_date).to_json.html_safe %>;
-  document.addEventListener('DOMContentLoaded', (event) => {
-  const ctx = document.getElementById('myChart').getContext('2d');
-  const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: '見積コスト',
-        data: data,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+    <canvas id="myChart_<%= event.id %>"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+    const data = <%= event_quotes.map(&:cost).to_json.html_safe %>;
+    const labels = <%= event_quotes.map(&:input_date).to_json.html_safe %>;
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const ctx = document.getElementById('myChart_<%= event.id %>').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '見積コスト',
+          data: data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
       }
-    }
-  });
-});
-  </script>
+    });
+    });
+    </script>
+  <% end %>
 </div>

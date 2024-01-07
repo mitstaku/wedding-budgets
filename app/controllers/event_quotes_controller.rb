@@ -5,7 +5,7 @@ class EventQuotesController < ApplicationController
 
   def index
     @events = user_signed_in? ? current_user.events : []
-    @event_quote = user_signed_in? ? EventQuote.where(event_id: current_user.events.pluck(:id)) : []
+    @event_quotes = user_signed_in? ? EventQuote.where(event_id: current_user.events.pluck(:id)).group_by(&:event_id) : []
   end
 
   def new
