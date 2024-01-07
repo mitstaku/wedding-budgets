@@ -26,6 +26,7 @@ class EventForm
 
   def initialize(attributes = {})
     super
+    
       self.foods = 10.times.map { Food.new() } unless self.foods.present?
       self.ceremonies = 10.times.map { Ceremony.new() } unless self.ceremonies.present?
       self.venues = 10.times.map { Venue.new() } unless self.venues.present?
