@@ -1,19 +1,25 @@
 <%= render "shared/header" %>
 
-<h1>aaa</h1>
+<h1>イベント見積グラフ</h1>
 
+<div class="event-list">
   <% @events.each do |event| %>
-    <%= event.name %>
-    <%= link_to 'イベント詳細', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn" %>
+    <div class="event-item">
+      <%= event.name %>
+      <%= link_to 'イベント詳細', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn" %>
+    </div>
   <% end %>
+</div>
 
+<div class="event-quote-graph">
   <% @event_quote.each do |event_quote| %>
     <div class='event-info'>
       <h3 class='event-name'>
         <%= event_quote.cost %>
       </h3>
-    <div class='event-date'>
-      <%= event_quote.input_date %>
+      <div class='event-date'>
+        <%= event_quote.input_date %>
+      </div>
     </div>
   <% end %>
 
@@ -29,7 +35,7 @@
     data: {
       labels: labels,
       datasets: [{
-        label: 'Cost',
+        label: '見積コスト',
         data: data,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
@@ -60,3 +66,4 @@
   });
 });
   </script>
+</div>
