@@ -1,0 +1,6 @@
+<% 10.times do |index| %>
+  <%= f.fields_for field do |i| %>
+    <%= i.text_field "#{field}_type_#{index + 1}", class: "event-type-input", id: "#{field}_type_#{index + 1}", placeholder: "#{placeholder}の種類を入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+    <%= i.text_field "#{field}_cost_#{index + 1}", class: "event-cost-input", id: "#{field}_cost_#{index + 1}", placeholder: "#{placeholder}のコストを入力", style: "display: #{index.zero? ? 'block' : 'none'};" %>
+  <% end %>
+<% end %>

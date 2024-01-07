@@ -1,6 +1,6 @@
 class EventQuotesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :new, :create]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def index
@@ -11,6 +11,20 @@ class EventQuotesController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @event_form = EventForm.new
+    @fieldIndices = {
+      foods: 1,
+      venues: 1,
+      ceremonies: 1,
+      costumes: 1,
+      beauties: 1,
+      flowers: 1,
+      prints: 1,
+      stagings: 1,
+      photos: 1,
+      videos: 1,
+      gifts: 1,
+      pre_ceremonies: 1
+    }
   end
 
   def create
@@ -36,6 +50,80 @@ class EventQuotesController < ApplicationController
     end
   end
 
+  def new_food
+    @event_form = EventForm.new
+    @event_form.foods.build
+    render partial: 'food', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_costume
+    @event_form = EventForm.new
+    @event_form.costumes.build
+    render partial: 'costume', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_venue
+    @event_form = EventForm.new
+    @event_form.venues.build
+    render partial: 'venue', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_ceremony
+    @event_form = EventForm.new
+    @event_form.ceremonies.build
+    render partial: 'ceremony', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_beauty
+    @event_form = EventForm.new
+    @event_form.beauties.build
+    render partial: 'beauty', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_flower
+    @event_form = EventForm.new
+    @event_form.flowers.build
+    render partial: 'flower', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_print
+    @event_form = EventForm.new
+    @event_form.prints.build
+    render partial: 'print', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_staging
+    @event_form = EventForm.new
+    @event_form.stagings.build
+    render partial: 'staging', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_photo
+    @event_form = EventForm.new
+    @event_form.photos.build
+    render partial: 'photo', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_video
+    @event_form = EventForm.new
+    @event_form.videos.build
+    render partial: 'video', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_gift
+    @event_form = EventForm.new
+    @event_form.gifts.build
+    render partial: 'gift', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+  def new_pre_ceremony
+    @event_form = EventForm.new
+    @event_form.pre_ceremonies.build
+    render partial: 'pre_ceremony', locals: { index: Time.now.to_i, f: @event_form }
+  end
+
+
+  
   private
 
   def event_quote_params
