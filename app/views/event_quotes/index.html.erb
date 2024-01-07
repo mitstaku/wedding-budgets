@@ -1,0 +1,17 @@
+<%= render "shared/header" %>
+
+<h1>aaa</h1>
+
+  <% @events.each do |event| %>
+    <%= event.name %>
+  <% end %>
+
+  <% @event_quote.each do |event_quote| %>
+    <div class='event-info'>
+      <h3 class='event-name'>
+        <%= event_quote.cost %>
+      </h3>
+    <div class='event-date'>
+      <%= event_quote.input_date %>
+    </div>
+  <% end %>

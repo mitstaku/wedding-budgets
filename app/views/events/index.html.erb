@@ -8,7 +8,7 @@
     <div class='event-date'>
       <%= event.event_date %>
     </div>
-    <%= link_to 'イベント詳細', event_path(event), method: :get, class: "event-red-btn" %>
+    <%= link_to 'イベント詳細', event_event_quotes_path(event), method: :get, class: "event-red-btn" %>
     <%= link_to 'イベント編集', edit_event_path(event), method: :get, class: "event-red-btn" %>
     <%= link_to '削除', event_path(event), data: { turbo_method: :delete }, class:'event-destroy' %>
   <% end %>

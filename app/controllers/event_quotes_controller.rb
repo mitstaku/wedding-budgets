@@ -1,4 +1,10 @@
 class EventQuotesController < ApplicationController
+
+  def index
+    @events = Event.all
+    @event_quote = EventQuote.all
+  end
+
   def new
     @event = Event.find(params[:event_id])
     @event_form = EventForm.new
