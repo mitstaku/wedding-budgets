@@ -1,44 +1,86 @@
+/* ヘッダー全体のスタイル */
 .top-page-header {
-  background-color: #f8f9fa;
-  padding: 20px 0;
-  margin-bottom: 20px;
+  background-color: #333; /* ヘッダーの背景色 */
+  color: #fff; /* ヘッダー内のテキスト色 */
+  padding: 10px 0; /* 上下のパディング */
+  overflow: hidden; /* フロート要素のクリア */
 }
 
-.search-bar-contents {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
+/* ナビゲーションのスタイル */
 .nav {
-  display: flex;
-  justify-content: center;
+  width: 50%; /* ナビゲーションの幅 */
+  float: left; /* 左右にナビゲーションを配置 */
 }
 
+/* ナビゲーションリストのスタイル */
+.nav ul {
+  list-style: none; /* リストのスタイルをなしに */
+  padding: 0; /* パディングを0に */
+  margin: 0; /* マージンを0に */
+  height: 100%; /* ナビゲーションの高さをヘッダーに合わせる */
+  display: flex; /* フレックスボックスを使用 */
+  align-items: center; /* アイテムを垂直方向に中央揃え */
+}
+
+/* ナビゲーションリスト（左側）のスタイル */
+.lists-left {
+  justify-content: flex-start; /* 左寄せに */
+}
+
+/* ナビゲーションリスト（右側）のスタイル */
 .lists-right {
-  list-style-type: none;
-  display: flex;
-  gap: 20px;
+  justify-content: flex-end; /* 右寄せに */
 }
 
-.lists-right li {
-  display: inline-block;
+/* リストアイテムのスタイル */
+.nav li {
+  margin: 0 10px; /* 左右のマージン */
 }
 
-.lists-right a {
-  color: #333;
-  text-decoration: none;
+/* リンクのスタイル */
+.nav a {
+  color: #fff; /* リンクのテキスト色 */
+  text-decoration: none; /* 下線をなしに */
+  padding: 5px 10px; /* パディング */
+  border-radius: 5px; /* 角丸 */
 }
 
-.lists-right a:hover {
-  color: #007bff;
-}
-
-.logout {
-  color: #dc3545;
-}
-
+/* ログイン・新規登録ボタンのスタイル */
 .login, .sign-up {
-  color: #28a745;
+  background-color: #5cb85c; /* 背景色 */
+  transition: background-color 0.3s; /* 背景色のトランジション */
+}
+
+.login:hover, .sign-up:hover {
+  background-color: #4cae4c; /* ホバー時の背景色 */
+}
+
+/* ログアウトボタンのスタイル */
+.logout {
+  background-color: #d9534f; /* 背景色 */
+  transition: background-color 0.3s; /* 背景色のトランジション */
+}
+
+.logout:hover {
+  background-color: #c9302c; /* ホバー時の背景色 */
+}
+
+/* イベント登録ボタンのスタイル */
+.event {
+  background-color: #f0ad4e; /* 背景色 */
+  transition: background-color 0.3s; /* 背景色のトランジション */
+}
+
+.event:hover {
+  background-color: #ec971f; /* ホバー時の背景色 */
+}
+
+/* ユーザー名のスタイル */
+.user-name {
+  background-color: #337ab7; /* 背景色 */
+  transition: background-color 0.3s; /* 背景色のトランジション */
+}
+
+.user-name:hover {
+  background-color: #286090; /* ホバー時の背景色 */
 }

@@ -1,6 +1,5 @@
 class EventQuotesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def index
@@ -30,11 +29,11 @@ class EventQuotesController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @event_form = EventForm.new(event_quote_params)
-    @event_form.event_id = @event.id 
+    @event_form.event_id = @event.id
 
     # 現在の日付をinput_dateに設定
     @event_form.input_date = Date.today
-    
+
     # costがnullの場合、デフォルト値を設定
     @event_form.cost ||= 0
 
@@ -43,7 +42,7 @@ class EventQuotesController < ApplicationController
 
     if @event_form.valid?
       @event_form.save
-      redirect_to root_path
+      redirect_to event_path(@event)
     else
       @fieldIndices = {
         foods: 1,
@@ -60,6 +59,17 @@ class EventQuotesController < ApplicationController
         pre_ceremonies: 1
       }
       render :new
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:event_id])
+    @event_quote = @event.event_quotes.find(params[:id])
+    if @event.user_id == current_user.id
+      @event_quote.destroy
+      redirect_to event_path(@event)
+    else
+      redirect_to event_path(@event)
     end
   end
 
@@ -139,7 +149,7 @@ class EventQuotesController < ApplicationController
 
   def event_quote_params
     params.require(:event_form).permit(
-      :detail, :cost, :adult_count, :input_date, :child_count, 
+      :detail, :cost, :adult_count, :input_date, :child_count,
       ceremonies_attributes: [:id, :ceremony_type, :ceremony_cost],
       foods_attributes: [:id, :food_type, :food_cost],
       costumes_attributes: [:id, :costume_type, :costume_cost],
@@ -154,13 +164,8 @@ class EventQuotesController < ApplicationController
     ).merge(event_id: params[:event_id])
   end
 
-  def set_event
-    @event = current_user.events.find(params[:id])
-    redirect_to root_path unless @event
-  end
-
   def handle_record_not_found
-    flash[:alert] = "The event you were looking for could not be found."
+    flash[:alert] = 'The event you were looking for could not be found.'
     redirect_to root_path
   end
 end

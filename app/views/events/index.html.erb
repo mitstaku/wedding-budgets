@@ -1,15 +1,24 @@
 <%= render "shared/header" %>
 
+<% if @events.empty? %>
+  <div class='event-info'>
+    <h3 class='event-name'>
+      <%= "イベントを登録しましょう" %>
+    </h3>
+      <%= link_to 'イベント登録', new_event_path, class: "event" %></li>
+  </div>
+<% else %>
   <% @events.each do |event| %>
     <div class='event-info'>
       <h3 class='event-name'>
         <%= event.name %>
       </h3>
-    <div class='event-date'>
-      <%= event.event_date %>
+      <div class='event-date'>
+        <%= event.event_date %>
+      </div>
+      <%= link_to 'イベント詳細', event_path(event), method: :get, class: "event-red-btn", data: { turbo: false } %>
+      <%= link_to 'イベント編集', edit_event_path(event), method: :get, class: "event-red-btn" %>
+      <%= link_to '削除', event_path(event), data: { turbo_method: :delete }, class:'event-destroy' %>
     </div>
-    <%= link_to 'イベント詳細', event_event_quotes_path(event), method: :get, class: "event-red-btn", data: { turbo: false } %>
-    <%= link_to 'イベント編集', edit_event_path(event), method: :get, class: "event-red-btn" %>
-    <%= link_to '削除', event_path(event), data: { turbo_method: :delete }, class:'event-destroy' %>
   <% end %>
-
+<% end %>

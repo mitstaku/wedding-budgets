@@ -3,7 +3,7 @@
 
   </header>
   <div id="event-form-main">
-    <h2 id="event-form-title">イベントの概要を入力</h2>
+    <h2 id="event-form-title">イベントの概要を編集</h2>
     
     <%= form_with model: @event, local: true  do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
@@ -24,7 +24,7 @@
     </div>
     <%# 下部ボタン %>
     <div id="event-form-buttons">
-      <%= f.submit "詳細入力へ" ,class:"submit-btn" %>
+      <%= f.submit "更新" ,class:"submit-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
