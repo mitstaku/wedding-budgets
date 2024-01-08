@@ -32,8 +32,8 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
-    @event_quotes = @event.event_quotes || {}
+    @events = user_signed_in? ? current_user.events : []
+    @event_quotes = user_signed_in? ? EventQuote.where(event_id: current_user.events.pluck(:id)).group_by(&:event_id) : []
   end
 
   def destroy
