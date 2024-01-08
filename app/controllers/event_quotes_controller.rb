@@ -66,7 +66,7 @@ class EventQuotesController < ApplicationController
     @event = Event.find(params[:event_id])
     @event_quote = @event.event_quotes.find(params[:id])
     if @event.user_id == current_user.id
-      @event_quote.destroy 
+      @event_quote.destroy
       redirect_to event_path(@event)
     else
       redirect_to event_path(@event)
