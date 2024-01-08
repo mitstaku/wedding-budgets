@@ -31,6 +31,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+    @event_quotes = @event.event_quotes || {}
+  end
+
   def destroy
     @event = Event.find(params[:id])
     if @event.user_id == current_user.id

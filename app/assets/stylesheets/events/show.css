@@ -1,0 +1,62 @@
+/* イベントリストのスタイル */
+.event-list {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* イベントアイテムのスタイル */
+.event-item {
+  margin-bottom: 20px;
+}
+
+/* 見積登録ボタンのスタイル */
+.event-red-btn {
+  padding: 10px 20px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.event-red-btn:hover {
+  background-color: #c9302c;
+}
+
+/* イベント情報のスタイル */
+.event-info {
+  margin-bottom: 20px;
+}
+
+.event-name {
+  margin: 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.event-date {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* イベント見積リストのスタイル */
+.event-quotes-list {
+  margin-top: 20px;
+}
+
+.event-quote-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* キャンバス（グラフ）のスタイル */
+canvas {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}

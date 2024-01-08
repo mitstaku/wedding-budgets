@@ -3,14 +3,14 @@
 <h1>イベント見積グラフ</h1>
 
 <div class="event-list">
-  <% @events.each do |event| %>
-    <div class="event-item">
-      <% remaining_days = (event.event_date - Date.today).to_i %>
-      <p><%= event.name %>まであと<%= remaining_days %>日</p>
-      <%= link_to '見積登録', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn" %>
-    </div>
-    <% event_quotes = @event_quotes[event.id] %>
-    <% if event_quotes.any? %>
+    <div class="event-list">
+      <div class="event-item">
+        <% remaining_days = (@event.event_date - Date.today).to_i %>
+        <p><%= @event.name %>まであと<%= remaining_days %>日</p>
+        <%= link_to '見積登録', new_event_event_quote_path(event_id: @event.id), method: :get, class: "event-red-btn", data: { turbo: false } %>
+      </div>
+    <% event_quotes = Array(@event_quotes[@event.id]) %>
+      <% if event_quotes.any? %>
       <% event_quote = event_quotes.first %>
       <% first_quote = event_quotes.first.cost %>
       <% last_quote = event_quotes.last.cost %>
@@ -27,14 +27,14 @@
       </div>
     <% end %>
 
-    <canvas id="myChart_<%= event.id %>"></canvas>
+    <canvas id="myChart_<%= @event.id %>"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
     const data = <%= event_quotes.map(&:cost).to_json.html_safe %>;
     const labels = <%= (1..event_quotes.size).map { |i| "登録：#{i}回目" }.to_json.html_safe %>;
     document.addEventListener('DOMContentLoaded', (event) => {
-    const ctx = document.getElementById('myChart_<%= event.id %>').getContext('2d');
+    const ctx = document.getElementById('myChart_<%= @event.id %>').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -80,5 +80,4 @@
         </div>
       <% end %>
     </div>
-  <% end %>
 </div>

@@ -2,7 +2,7 @@
   <header id="event-form-header">
   </header>
   <div id="event-form-main">
-    <h2 id="event-form-title">イベントの概要を入力</h2>
+    <h2 id="event-form-title">イベントの見積金額を入力</h2>
   </div>
     <%= form_with model: @event_form, url: event_event_quotes_path(@event), local: true, html: { data: { turbo: "false" } } do |f| %>
       <%= render 'shared/error_messages', model: @event_form %>
@@ -200,7 +200,7 @@
       </div>
       
       <div class="event-detail-label">
-        詳細
+        コメント
       </div>
       <%= f.text_area :detail, class: "event-detail-input", placeholder: "詳細を入力" %>
 
@@ -254,10 +254,6 @@
 
     document.getElementById('show-venue-fields-button').addEventListener('click', function() {
       showNextField('venue');
-    });
-
-    document.getElementById('show-ceremony-fields-button').addEventListener('click', function() {
-      showNextField('ceremony');
     });
 
     document.getElementById('show-gift-fields-button').addEventListener('click', function() {

@@ -1,0 +1,95 @@
+/* 共通スタイル */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+/* フォーム全体のコンテナ */
+.registration-main {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* フォームのラップ */
+.form-wrap {
+  margin: 20px 0;
+}
+
+/* フォームヘッダー */
+.form-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-header-text {
+  margin: 0;
+  color: #333;
+}
+
+/* フォームグループ */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-text-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.form-text {
+  margin: 0;
+  font-weight: bold;
+}
+
+.indispensable {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+/* 入力フィールド */
+.input-default {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* パスワード情報テキスト */
+.info-text {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* 登録ボタン */
+.register-btn {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-red-btn {
+  padding: 10px 20px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.register-red-btn:hover {
+  background-color: #c9302c;
+}
