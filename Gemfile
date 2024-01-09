@@ -76,6 +76,7 @@ end
 
 gem 'pry-rails'
 gem 'devise'
+gem 'rails-erd' 
 
 group :production do
   gem 'pg'

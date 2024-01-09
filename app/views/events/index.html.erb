@@ -1,24 +1,36 @@
 <%= render "shared/header" %>
 
-<% if @events.empty? %>
-  <div class='event-info'>
-    <h3 class='event-name'>
-      <%= "イベントを登録しましょう" %>
-    </h3>
-      <%= link_to 'イベント登録', new_event_path, class: "event" %></li>
-  </div>
-<% else %>
-  <% @events.each do |event| %>
+<% if user_signed_in? %>
+  <% if @events.empty? %>
     <div class='event-info'>
       <h3 class='event-name'>
-        <%= event.name %>
+        <%= "まだイベントが登録されていません" %><br>
+        <%= "イベントを登録して見積を登録しましょう" %>
       </h3>
-      <div class='event-date'>
-        <%= event.event_date %>
-      </div>
-      <%= link_to 'イベント詳細', event_path(event), method: :get, class: "event-red-btn", data: { turbo: false } %>
-      <%= link_to 'イベント編集', edit_event_path(event), method: :get, class: "event-red-btn" %>
-      <%= link_to '削除', event_path(event), data: { turbo_method: :delete }, class:'event-destroy' %>
+        <%= link_to 'イベント登録', new_event_path, class: "event-red-btn" %></li>
     </div>
+  <% else %>
+    <% @events.each do |event| %>
+      <div class='event-info'>
+        <h3 class='event-name'>
+          <%= event.name %>
+        </h3>
+        <div class='event-date'>
+          <%= event.event_date %>
+        </div>
+        <%= link_to 'イベント詳細', event_path(event), method: :get, class: "event-red-btn", data: { turbo: false } %>
+        <%= link_to 'イベント編集', edit_event_path(event), method: :get, class: "event-red-btn" %>
+        <%= link_to '削除', event_path(event), data: { turbo_method: :delete }, class:'event-destroy' %>
+      </div>
+    <% end %>
   <% end %>
+<% else %>
+  <div class='event-info'>
+    <h3 class='event-name'>
+      <%= "会員登録／ログインしましょう" %>
+    </h3>
+    <%= link_to 'ログイン', new_user_session_path, class: "event-red-btn" %></li>
+    <%= link_to '会員登録', new_user_registration_path, class: "event-red-btn" %></li>
+  </div>
 <% end %>
+

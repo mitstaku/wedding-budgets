@@ -1,3 +1,5 @@
+<%= render "shared/header" %>
+
 <div id="event-form-container">
   <header id="event-form-header">
 
@@ -16,7 +18,7 @@
       <%= f.text_area :name, class:"event-name-input", id:"event-name", placeholder:"結婚式など", maxlength:"40" %>
       <div id="event-date-section">
         <div class="event-date-label">
-          イベントの日
+          イベント開催日
           <span class="required">必須</span>
         </div>
         <%= f.date_field :event_date, class:"event-date-input", id:"event-date" %>

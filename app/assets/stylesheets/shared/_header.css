@@ -1,15 +1,16 @@
 /* ヘッダー全体のスタイル */
 .top-page-header {
-  background-color: #333; /* ヘッダーの背景色 */
+  background-color: #f7f5f5; /* ヘッダーの背景色 */
   color: #fff; /* ヘッダー内のテキスト色 */
   padding: 10px 0; /* 上下のパディング */
   overflow: hidden; /* フロート要素のクリア */
+  text-align: center; /* ヘッダー内の要素を中央揃え */
 }
 
 /* ナビゲーションのスタイル */
 .nav {
-  width: 50%; /* ナビゲーションの幅 */
-  float: left; /* 左右にナビゲーションを配置 */
+  width: 100%; /* ナビゲーションの幅 */
+  display: inline-block; /* インラインブロック要素に */
 }
 
 /* ナビゲーションリストのスタイル */
@@ -24,12 +25,12 @@
 
 /* ナビゲーションリスト（左側）のスタイル */
 .lists-left {
-  justify-content: flex-start; /* 左寄せに */
+  justify-content: center; /* 中央寄せに */
 }
 
 /* ナビゲーションリスト（右側）のスタイル */
 .lists-right {
-  justify-content: flex-end; /* 右寄せに */
+  justify-content: flex-end; /* 右端寄せに */
 }
 
 /* リストアイテムのスタイル */
@@ -83,4 +84,11 @@
 
 .user-name:hover {
   background-color: #286090; /* ホバー時の背景色 */
+}
+
+.rogo {
+  max-width: 150px; /* ロゴの最大幅を150ピクセルに設定 */
+  height: auto; /* 高さを自動調整してアスペクト比を維持 */
+  display: inline-block; /* インラインブロック要素に */
+  margin: 0 auto; /* 左右のマージンを自動に */
 }

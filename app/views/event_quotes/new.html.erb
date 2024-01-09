@@ -1,3 +1,5 @@
+<%= render "shared/header" %>
+
 <div id="event-form-container">
   <header id="event-form-header">
   </header>
@@ -21,7 +23,7 @@
 
         <%# 挙式 %>
         <div class="event-name-label">
-          挙式
+          挙式（挙式料／チャペル演出／フラワーシャワーなど）
         </div>
         <div id="ceremony-container">
           <% @event_form.ceremonies.each_with_index do |ceremony, index| %>
@@ -35,7 +37,7 @@
 
         <%# 料理 %>
         <div class="event-name-label">
-          料理/料理の費用
+          料理（料理（大人）／料理（子供）／飲料／ケーキなど）
         </div>
         <div id="food-container">
           <% @event_form.foods.each_with_index do |food, index| %>
@@ -49,7 +51,7 @@
         
         <%# 会場 %>
         <div class="event-name-label">
-          会場
+          会場（会場使用料／ウェイティングルーム／メイクルームなど）
         </div>
         <div id="venue-container">
           <% @event_form.venues.each_with_index do |venue, index| %>
@@ -63,7 +65,7 @@
         
         <%# 衣装 %>
         <div class="event-name-label">
-          衣装
+          衣装（新郎衣装／新婦衣装／新婦小物など）
         </div>
         <div id="costume-container">
           <% @event_form.costumes.each_with_index do |costume, index| %>
@@ -77,7 +79,7 @@
         
         <%# 美容 %>
         <div class="event-name-label">
-          美容
+          美容（新婦支度料／新郎支度料／メイクリハーサルなど）
         </div>
         <div id="beauty-container">
           <% @event_form.beauties.each_with_index do |beauty, index| %>
@@ -91,7 +93,7 @@
         
         <%# 装花 %>
         <div class="event-name-label">
-          装花
+          装花（メインテーブル装花／ゲストテーブル装花／ブーケ・ブートニアなど）
         </div>
         <div id="flower-container">
           <% @event_form.flowers.each_with_index do |flower, index| %>
@@ -105,7 +107,7 @@
         
         <%# 印刷物 %>
         <div class="event-name-label">
-          印刷物
+          印刷物（招待状／席次表／席札など）
         </div>
         <div id="print-container">
           <% @event_form.prints.each_with_index do |print, index| %>
@@ -119,7 +121,7 @@
         
         <%# 演出 %>
         <div class="event-name-label">
-          演出
+          演出（司会者/プロジェクションマッピング／著作権等使用料など）
         </div>
         <div id="staging-container">
           <% @event_form.stagings.each_with_index do |staging, index| %>
@@ -133,7 +135,7 @@
         
         <%# 写真 %>
         <div class="event-name-label">
-          写真
+          写真（スナップアルバムなど）
         </div>
         <div id="photo-container">
           <% @event_form.photos.each_with_index do |photo, index| %>
@@ -147,7 +149,7 @@
         
         <%# ビデオ %>
         <div class="event-name-label">
-          ビデオ
+          ビデオ（オープニングムービー／プロフィールムービー／エンドロールなど）
         </div>
         <div id="video-container">
           <% @event_form.videos.each_with_index do |video, index| %>
@@ -161,7 +163,7 @@
         
         <%# 引出物 %>
         <div class="event-name-label">
-          引出物
+          引出物（引出物／引菓子／ブライダルバックなど）
         </div>
         <div id="gift-container">
           <% @event_form.gifts.each_with_index do |gift, index| %>
@@ -175,7 +177,7 @@
         
         <%# 前撮り %>
         <div class="event-name-label">
-          前撮り
+          前撮り（新郎衣装／新婦衣装／新婦小物／新婦支度料／新郎支度料／新婦小物など）
         </div>
         <div id="pre_ceremony-container">
           <% @event_form.pre_ceremonies.each_with_index do |pre_ceremony, index| %>
