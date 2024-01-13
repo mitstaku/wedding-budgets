@@ -14,7 +14,7 @@ class EventForm
                 :photo_type, :photo_cost,
                 :video_type, :video_cost,
                 :gift_type, :gift_cost,
-                :pre_ceremony_type, :pre_ceremony_cost, :foods,
+                :pre_ceremony_type, :pre_ceremony_cost,
                 :foods, :ceremonies, :venues, :costumes, :beauties, :flowers, :prints, :stagings, :photos, :videos, :gifts, :pre_ceremonies
 
   validates :event_id, :version_number, :input_date,

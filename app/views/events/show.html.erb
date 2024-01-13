@@ -3,13 +3,12 @@
 <h1>イベント詳細画面</h1>
 
 <div class="event-list">
-  <% @events.each do |event| %>
     <div class="event-item">
-      <% remaining_days = (event.event_date - Date.today).to_i %>
-      <p><%= event.name %>まであと<%= remaining_days %>日</p>
-      <%= link_to '見積登録', new_event_event_quote_path(event_id: event.id), method: :get, class: "event-red-btn", data: { turbo: false } %>
+      <% remaining_days = (@event.event_date - Date.today).to_i %>
+      <p><%= @event.name %>まであと<%= remaining_days %>日</p>
+      <%= link_to '見積登録', new_event_event_quote_path(event_id: @event.id), method: :get, class: "event-red-btn", data: { turbo: false } %>
     </div>
-    <% event_quotes = @event_quotes[event.id] || [] %>
+    <% event_quotes = @event_quotes[@event.id] || [] %>
     <% if event_quotes.any? %>
       <% event_quote = event_quotes.first %>
       <% first_quote = event_quotes.first.cost.to_i %>
@@ -23,18 +22,18 @@
         </h3>
         <div class='event-date'>
           <%= event_quote.input_date.strftime("%Y年%m月%d日") %>
-        </div>
+        </div>  
       </div>
     <% end %>
 
-    <canvas id="myChart_<%= event.id %>"></canvas>
+    <canvas id="myChart_<%= @event.id %>"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
     const data = <%= event_quotes.map { |quote| quote.cost.to_i }.to_json.html_safe %>;
     const labels = <%= (1..event_quotes.size).map { |i| "登録：#{i}回目" }.to_json.html_safe %>;
     document.addEventListener('DOMContentLoaded', (event) => {
-      const ctx = document.getElementById('myChart_<%= event.id %>').getContext('2d');
+      const ctx = document.getElementById('myChart_<%= @event.id %>').getContext('2d');
       if (!ctx) {
         console.error('Canvas element not found!');
         return;
@@ -88,9 +87,8 @@
           <p>登録回数: <%= index + 1 %></p>
           <p>登録日: <%= quote.input_date.strftime("%Y年%m月%d日") %></p>
           <p>金額: <%= number_with_delimiter(quote.cost.to_i) %>円</p>
-         <%= link_to '削除', event_event_quote_path(event, quote), class: 'event-destroy', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+         <%= link_to '削除', event_event_quote_path(@event, quote), class: 'event-destroy', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
         </div>
       <% end %>
     </div>
-  <% end %>
 </div>
