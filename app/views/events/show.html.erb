@@ -82,12 +82,15 @@
     });
     </script>
     <div class="event-quotes-list">
-      <% event_quotes.each_with_index do |quote, index| %>
+      <% @event.event_quotes.each_with_index do |quote, index| %>
         <div class="event-quote-item">
           <p>登録回数: <%= index + 1 %></p> <!-- 登録回数を表示 -->
           <p>登録日: <%= quote.input_date.strftime("%Y年%m月%d日") %></p> <!-- 登録日を表示 -->
           <p>金額: <%= number_with_delimiter(quote.cost.to_i) %>円</p> <!-- 金額を表示 -->
-         <%= link_to '削除', event_event_quote_path(@event, quote), class: 'event-destroy', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> <!-- 削除ボタン -->
+          <p>大人の人数: <%= quote.guest.adult_count %></p> <!-- 大人の人数を表示 -->
+          <p>子供の人数: <%= quote.guest.child_count %></p> <!-- 子供の人数を表示 -->
+          <p>コメント: <%= quote.detail.present? ? quote.detail : 'なし' %></p> <!-- コメントを表示、コメントがnullの場合は'なし'を表示 -->
+          <%= link_to '削除', event_event_quote_path(@event, quote), class: 'event-destroy', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %> <!-- 削除ボタン -->
         </div>
       <% end %>
     </div>

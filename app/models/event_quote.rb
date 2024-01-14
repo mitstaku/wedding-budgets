@@ -1,6 +1,6 @@
 class EventQuote < ApplicationRecord
   belongs_to :event
-  has_many :guests, dependent: :destroy
+  has_one :guest, dependent: :destroy
   has_many :ceremonies, dependent: :destroy
   has_many :foods, dependent: :destroy
   has_many :venues, dependent: :destroy

@@ -26,74 +26,33 @@ class EventForm
   validates :ceremony_cost, :food_cost, :venue_cost, :costume_cost, :beauty_cost, :flower_cost, :print_cost, :staging_cost,
             :photo_cost, :video_cost, :gift_cost, :pre_ceremony_cost, numericality: { only_integer: true, allow_blank: true }
 
-  # イベントフォームの初期化
+  RELATED_ATTRIBUTES = {
+    foods: Food,
+    ceremonies: Ceremony,
+    venues: Venue,
+    costumes: Costume,
+    beauties: Beauty,
+    flowers: Flower,
+    prints: Print,
+    stagings: Staging,
+    photos: Photo,
+    videos: Video,
+    gifts: Gift,
+    pre_ceremonies: PreCeremony
+    }.freeze
+    
   def initialize(attributes = {})
     super attributes
-
-    # 各属性が存在しない場合、新しいインスタンスを作成
-    self.foods = 10.times.map { Food.new } unless foods.present?
-    self.ceremonies = 10.times.map { Ceremony.new } unless ceremonies.present?
-    self.venues = 10.times.map { Venue.new } unless venues.present?
-    self.costumes = 10.times.map { Costume.new } unless costumes.present?
-    self.beauties = 10.times.map { Beauty.new } unless beauties.present?
-    self.flowers = 10.times.map { Flower.new } unless flowers.present?
-    self.prints = 10.times.map { Print.new } unless prints.present?
-    self.stagings = 10.times.map { Staging.new } unless stagings.present?
-    self.photos = 10.times.map { Photo.new } unless photos.present?
-    self.videos = 10.times.map { Video.new } unless videos.present?
-    self.gifts = 10.times.map { Gift.new } unless gifts.present?
-    self.pre_ceremonies = 10.times.map { PreCeremony.new } unless pre_ceremonies.present?
+    RELATED_ATTRIBUTES.each do |relation, model_class|
+      instance_variable_set("@#{relation}", 10.times.map { model_class.new }) unless send(relation).present?
+    end
   end
 
-  # 各属性のセッターメソッドを定義
-  def foods_attributes=(attributes)
-    self.foods = attributes.map { |_, v| Food.new(v) }
+  RELATED_ATTRIBUTES.keys.each do |relation|
+    define_method("#{relation}_attributes=") do |attributes|
+      send("#{relation}=", attributes.map { |_, v| RELATED_ATTRIBUTES[relation].new(v) })
+    end
   end
-
-  def ceremonies_attributes=(attributes)
-    self.ceremonies = attributes.map { |_, v| Ceremony.new(v) }
-  end
-
-  def venues_attributes=(attributes)
-    self.venues = attributes.map { |_, v| Venue.new(v) }
-  end
-
-  def costumes_attributes=(attributes)
-    self.costumes = attributes.map { |_, v| Costume.new(v) }
-  end
-
-  def beauties_attributes=(attributes)
-    self.beauties = attributes.map { |_, v| Beauty.new(v) }
-  end
-
-  def flowers_attributes=(attributes)
-    self.flowers = attributes.map { |_, v| Flower.new(v) }
-  end
-
-  def prints_attributes=(attributes)
-    self.prints = attributes.map { |_, v| Print.new(v) }
-  end
-
-  def stagings_attributes=(attributes)
-    self.stagings = attributes.map { |_, v| Staging.new(v) }
-  end
-
-  def photos_attributes=(attributes)
-    self.photos = attributes.map { |_, v| Photo.new(v) }
-  end
-
-  def videos_attributes=(attributes)
-    self.videos = attributes.map { |_, v| Video.new(v) }
-  end
-
-  def gifts_attributes=(attributes)
-    self.gifts = attributes.map { |_, v| Gift.new(v) }
-  end
-
-  def pre_ceremonies_attributes=(attributes)
-    self.pre_ceremonies = attributes.map { |_, v| PreCeremony.new(v) }
-  end
-
   # イベントフォームの保存メソッド
   def save
     # トランザクションを開始
