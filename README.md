@@ -23,8 +23,8 @@ https://wedding-budgets.onrender.com/
 2. イベント、見積を登録する
 
 ## アプリケーションを作成した背景
-私が現在、結婚式の準備を行っており、見積時点から費用がいくら上がっているのか把握できていませんでした。
-そのため費用に動きがあった際、都度記録できれば費用を把握することができ、節約すべきところがあるか、増額しても問題ないのかなど判断がつきやすくなると考えました。
+- 私が現在、結婚式の準備を行っており、見積時点から費用がいくら上がっているのか把握できていませんでした。
+- そのため費用に動きがあった際、都度記録できれば費用を把握することができ、節約すべきところがあるか、増額しても問題ないのかなど判断がつきやすくなると考えました。
 
 ## 洗い出した要件
 https://docs.google.com/spreadsheets/d/121dOuFKGHeaaWB940u9zocZQ3VbN0_5Cxoz1q_1JWvg/edit?usp=sharing
@@ -44,10 +44,10 @@ https://docs.google.com/spreadsheets/d/121dOuFKGHeaaWB940u9zocZQ3VbN0_5Cxoz1q_1J
 - 現在は合計金額のみ表示しているため、挙式、料理などのカテゴリごとに金額を比較できるようにする
 
 ## データベース設計
-![ER](/Users/takuya/projects/wedding-budgets/ER.png)
+![ER](https://github.com/mitstaku/wedding-budgets/blob/main/ER.png)
 
 ## 画面遷移図
-![screen_transition_diagram](/Users/takuya/projects/wedding-budgets/screen_transition_diagram.png)
+![screen_transition_diagram](https://github.com/mitstaku/wedding-budgets/blob/main/screen_transition_diagram.png)
 
 ## 開発環境
 
