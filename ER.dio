@@ -154,7 +154,7 @@
                 <mxCell id="210" value="cost" style="text;strokeColor=#000000;fillColor=#FFFFFF;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=#050505;" parent="206" vertex="1">
                     <mxGeometry y="86" width="160" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="211" value="photo" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#0a0a0a;" parent="1" vertex="1">
+                <mxCell id="211" value="photos" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#0a0a0a;" parent="1" vertex="1">
                     <mxGeometry x="590" y="40" width="160" height="116" as="geometry"/>
                 </mxCell>
                 <mxCell id="212" value="event_version_id" style="text;strokeColor=#000000;fillColor=#FFFFFF;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=#050505;" parent="211" vertex="1">
