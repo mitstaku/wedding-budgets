@@ -1,211 +1,75 @@
 # README
 
-# テーブル設計
+# アプリケーション名
+Wedding Budget
 
-## users テーブル
+# アプリケーション概要
+結婚式にかかる費用を都度入力することで、今いくらになっているのかを把握することができる
 
-| Column             | Type   | Options                  |
-| ------------------ | ------ | ------------------------ |
-| name               | string | null: false              |
-| email              | string | null: false, unique: true|
-| encrypted_password | string | null: false              |
+## URL
 
-### Association
+https://wedding-budgets.onrender.com/
 
-- has_many :events
+## テスト用アカウント
 
-## events テーブル
+- Basic認証パスワード: 2222
+- Basic認証ID: admin
+- メールアドレス: test@gmail.com
+- パスワード: aaa111
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| user_id           | references | null: false, foreign_key: true |
-| name              | string     | null: false                    |
-| event_date        | date       | null: false                    |
+## 利用方法
 
-### Association
+1. トップページ（イベント一覧画面）からユーザー新規登録を行う
+2. イベント、見積を登録する
 
-- belongs_to :user
-- has_many :event_versions
+## アプリケーションを作成した背景
+私が現在、結婚式の準備を行っており、見積時点から費用がいくら上がっているのか把握できていませんでした。
+そのため費用に動きがあった際、都度記録できれば費用を把握することができ、節約すべきところがあるか、増額しても問題ないのかなど判断がつきやすくなると考えました。
 
-## event_versions テーブル
+## 洗い出した要件
+https://docs.google.com/spreadsheets/d/121dOuFKGHeaaWB940u9zocZQ3VbN0_5Cxoz1q_1JWvg/edit?usp=sharing
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_id          | references | null: false, foreign_key: true |
-| version_number    | integer    | null: false                    |
-| details           | text       | null: false                    |
-| cost              | decimal    | null: false                    |
-| input_date        | date       | null: false                    |
+## 実装した機能についての画像やGIFおよびその説明（未実施）
+| NO | 画面        | 機能                | 目的                            | 様子                                      |
+|----|------------|-------------------- |--------------------------------|-------------------------------------------|
+| 1  | ユーザー登録 | 新規登録・ログイン機能  | ユーザーごとにイベントを管理するため | [![Image from Gyazo](https://i.gyazo.com/a4d40e6936b720d28408f0039833678b.gif)](https://gyazo.com/a4d40e6936b720d28408f0039833678b) |
+| 2  | イベント登録 | イベント登録機能       | イベント名、開催日を設定するため    | [![Image from Gyazo](https://i.gyazo.com/328531f7424dccc5094f5ebb44e2b7c3.gif)](https://gyazo.com/328531f7424dccc5094f5ebb44e2b7c3) |
+| 3  | イベント編集 | イベント編集機能       | 登録に誤りがあった際に修正するため  | [![Image from Gyazo](https://i.gyazo.com/8a17ea341fd5e479344e88502f2f9dfe.gif)](https://gyazo.com/8a17ea341fd5e479344e88502f2f9dfe) |
+| 4  | 見積登録    | 見積登録機能           | 現在の金額を登録するため       | [![Image from Gyazo](https://i.gyazo.com/688a2de31515b644cbb8401efc0e4fc3.gif)](https://gyazo.com/688a2de31515b644cbb8401efc0e4fc3) |
+| 5  | イベント詳細 | イベント・見積金額参照機能 | 現在の金額、見積時からの差分を把握するため      | [![Image from Gyazo](https://i.gyazo.com/0f2d017d31fc199ddf46ca478ea4982c.gif)](https://gyazo.com/0f2d017d31fc199ddf46ca478ea4982c) |
 
-### Association
+## 実装予定の機能
 
-- belongs_to :event
-- has_many :guests
-- has_many :ceremonies
-- has_many :foods
-- has_many :venues
-- has_many :costumes
-- has_many :beauties
-- has_many :flowers
-- has_many :prints
-- has_many :stagings
-- has_many :photos
-- has_many :videos
-- has_many :gifts
-- has_many :pre_weddings
+- ユーザビリティ向上のため、2回目以降に見積を登録する際、前回に入力した内容を初期表示する
+- 現在は合計金額のみ表示しているため、挙式、料理などのカテゴリごとに金額を比較できるようにする
 
-## guests テーブル
+## データベース設計
+![ER](/Users/takuya/projects/wedding-budgets/ER.png)
 
-| Column             | Type       | Options                       |
-| ------------------ | ---------- | ----------------------------- |
-| event_version      | references | null: false, foreign_key: true|
-| adult_count        | string     | null: false                   |
-| child_count        | string     | null: false                   |
+## 画面遷移図
+![screen_transition_diagram](/Users/takuya/projects/wedding-budgets/screen_transition_diagram.png)
 
-### Association
+## 開発環境
 
-- belongs_to :event_version
+- フロントエンド：HTML/CSS/JavaScript/chart.js
+- バックエンド：Ruby 3.2.0/Rails 7.0.8
+- データベース：PostgreSQL
+- インフラ：Render
+- テキストエディタ：Visual Studio Code/Cursor
 
-## ceremonies テーブル
+## ローカルでの動作方法
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
+以下のコマンドを順に実行。
+% git clone https://github.com/mitstaku/wedding-budgets.git
+% cd xxxx
+% bundle install
+% yarn install
 
-### Association
+## 工夫したポイント
+1.視覚的に見やすく
+- chart.jsを用いて金額の推移を見やすく工夫した
+- オリジナルロゴの作成や、ベーシックな色合いなどの見た目を工夫した
 
-- belongs_to :event_version
-
-## foods テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## venues テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## costumes テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## beauties テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    | null: false                    |
-
-### Association
-
-- belongs_to :event_version
-
-## flowers テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## prints テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## stagings テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## photos テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## videos テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## gifts テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
-
-## pre_ceremonies テーブル
-
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| event_version     | references | null: false, foreign_key: true |
-| type              | text       |                                |
-| cost              | decimal    |                                |
-
-### Association
-
-- belongs_to :event_version
+2.ユーザーが使いやすく
+- 見積登録画面で、カテゴリごとに＋ボタンを配置し、必要な分だけテキストボックスを表示するようにした
+- イベントや見積が登録されていない場合には「イベントを登録しましょう」などの文言と登録ボタンを表示するようにし、次に何をすればいいかユーザーがわかりやすいように工夫した
