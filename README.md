@@ -1,5 +1,3 @@
-# README
-
 # アプリケーション名
 Wedding Budget
 
@@ -60,10 +58,10 @@ https://docs.google.com/spreadsheets/d/121dOuFKGHeaaWB940u9zocZQ3VbN0_5Cxoz1q_1J
 ## ローカルでの動作方法
 
 以下のコマンドを順に実行。
-% git clone https://github.com/mitstaku/wedding-budgets.git
-% cd xxxx
-% bundle install
-% yarn install
+- git clone https://github.com/mitstaku/wedding-budgets.git
+- cd xxxx
+- bundle install
+- yarn install
 
 ## 工夫したポイント
 1.視覚的に見やすく
