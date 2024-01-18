@@ -10,8 +10,8 @@ https://wedding-budgets.onrender.com/
 
 ## テスト用アカウント
 
-- Basic認証パスワード: 2222
 - Basic認証ID: admin
+- Basic認証パスワード: 2222
 - メールアドレス: test@gmail.com
 - パスワード: aaa111
 
@@ -27,7 +27,7 @@ https://wedding-budgets.onrender.com/
 ## 洗い出した要件
 https://docs.google.com/spreadsheets/d/121dOuFKGHeaaWB940u9zocZQ3VbN0_5Cxoz1q_1JWvg/edit?usp=sharing
 
-## 実装した機能についての画像やGIFおよびその説明（未実施）
+## 実装した機能についての画像やGIFおよびその説明
 | NO | 画面        | 機能                | 目的                            | 様子                                      |
 |----|------------|-------------------- |--------------------------------|-------------------------------------------|
 | 1  | ユーザー登録 | 新規登録・ログイン機能  | ユーザーごとにイベントを管理するため | [![Image from Gyazo](https://i.gyazo.com/a4d40e6936b720d28408f0039833678b.gif)](https://gyazo.com/a4d40e6936b720d28408f0039833678b) |
