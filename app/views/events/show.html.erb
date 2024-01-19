@@ -24,63 +24,64 @@
           <%= event_quote.input_date.strftime("%Y年%m月%d日") %> <!-- 見積登録日を表示 -->
         </div>  
       </div>
-    <% end %>
+      <canvas id="myChart_<%= @event.id %>"></canvas> <!-- グラフ表示エリア -->
 
-    <canvas id="myChart_<%= @event.id %>"></canvas> <!-- グラフ表示エリア -->
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <script>
-    const data = <%= event_quotes.map { |quote| quote.cost.to_i }.to_json.html_safe %>; <!-- 見積額のデータ -->
-    const labels = <%= (1..event_quotes.size).map { |i| "登録：#{i}回目" }.to_json.html_safe %>; <!-- ラベルデータ -->
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const ctx = document.getElementById('myChart_<%= @event.id %>').getContext('2d');
-      if (!ctx) {
-        console.error('Canvas element not found!'); <!-- エラーメッセージ -->
-        return;
-      }
-
-      const minData = Math.min(...data);
-      const yMin = minData > 0 ? minData / 2 : 0;
-
-      const myChart = new Chart(ctx, { <!-- グラフの設定 -->
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: '金額',
-            data: data,
-            backgroundColor: [ <!-- 背景色の設定 -->
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [ <!-- 枠線の色の設定 -->
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1 <!-- 枠線の幅の設定 -->
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false,
-                min: yMin
-              }
-            }]
-          }
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+      <script>
+      const data = <%= event_quotes.map { |quote| quote.cost.to_i }.to_json.html_safe %>; <!-- 見積額のデータ -->
+      const labels = <%= (1..event_quotes.size).map { |i| "登録：#{i}回目" }.to_json.html_safe %>; <!-- ラベルデータ -->
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const ctx = document.getElementById('myChart_<%= @event.id %>').getContext('2d');
+        if (!ctx) {
+          console.error('Canvas element not found!'); <!-- エラーメッセージ -->
+          return;
         }
+
+        const minData = Math.min(...data);
+        const yMin = minData > 0 ? minData / 2 : 0;
+
+        const myChart = new Chart(ctx, { <!-- グラフの設定 -->
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: '金額',
+              data: data,
+              backgroundColor: [ <!-- 背景色の設定 -->
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [ <!-- 枠線の色の設定 -->
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1 <!-- 枠線の幅の設定 -->
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: false,
+                  min: yMin
+                }
+              }]
+            }
+          }
+        });
       });
-    });
-    </script>
+      </script>
+    <% else %>
+      <p>見積登録ボタンを押下して見積を登録しましょう</p>
+    <% end %>
     <div class="event-quotes-list">
       <% @event.event_quotes.each_with_index do |quote, index| %>
         <div class="event-quote-item">
